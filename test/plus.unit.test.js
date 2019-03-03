@@ -32,17 +32,17 @@ describe("plus", () => {
 
     expect(instance.rollSteps).toEqual(["old", "new"]);
     expect(parseRollExpr).toHaveBeenCalledTimes(1);
-    expect(parseRollExpr).toHaveBeenCalledWith(rollExpr, { factor: 1 });
+    expect(parseRollExpr).toHaveBeenCalledWith(rollExpr, { sign: 1 });
   });
 
-  it("passes factor to parseRollExpr", () => {
+  it("passes sign to parseRollExpr", () => {
     const instance = {};
     const rollExpr = "test";
 
     plus.bind(instance)(rollExpr, -1);
 
     expect(parseRollExpr).toHaveBeenCalledTimes(1);
-    expect(parseRollExpr).toHaveBeenCalledWith(rollExpr, { factor: -1 });
+    expect(parseRollExpr).toHaveBeenCalledWith(rollExpr, { sign: -1 });
   });
 
   it("returns this", () => {
