@@ -1,19 +1,19 @@
-const advantage = require('../lib/advantage');
-const parseRollExpr = require('../lib/utils/parseRollExpr');
-const validateRollExpr = require('../lib/utils/validateRollExpr');
+const advantage = require("../lib/advantage");
+const parseRollExpr = require("../lib/utils/parseRollExpr");
+const validateRollExpr = require("../lib/utils/validateRollExpr");
 
-jest.mock('../lib/utils/parseRollExpr', () => jest.fn());
-jest.mock('../lib/utils/validateRollExpr', () => jest.fn());
+jest.mock("../lib/utils/parseRollExpr", () => jest.fn());
+jest.mock("../lib/utils/validateRollExpr", () => jest.fn());
 
-describe('advantage', () => {
+describe("advantage", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     parseRollExpr.mockReturnValue([]);
   });
 
-  it('calls validateRollExpr', () => {
+  it("calls validateRollExpr", () => {
     const instance = {};
-    const rollExpr = 'test';
+    const rollExpr = "test";
 
     advantage.bind(instance)(rollExpr);
 
@@ -21,33 +21,33 @@ describe('advantage', () => {
     expect(validateRollExpr).toHaveBeenCalledWith(rollExpr);
   });
 
-  it('adds result of parseRollExpr to this.rollSteps', () => {
-    const rollExpr = 'testExpr';
-    const rollSteps = ['old'];
+  it("adds result of parseRollExpr to this.rollSteps", () => {
+    const rollExpr = "testExpr";
+    const rollSteps = ["old"];
     const instance = { rollSteps };
 
-    parseRollExpr.mockReturnValue(['new']);
+    parseRollExpr.mockReturnValue(["new"]);
 
     advantage.bind(instance)(rollExpr);
 
-    expect(instance.rollSteps).toEqual(['old', 'new']);
+    expect(instance.rollSteps).toEqual(["old", "new"]);
     expect(parseRollExpr).toHaveBeenCalledTimes(1);
-    expect(parseRollExpr)
-      .toHaveBeenCalledWith(rollExpr, { effect: 'advantage' });
+    expect(parseRollExpr).toHaveBeenCalledWith(rollExpr, {
+      effect: "advantage"
+    });
   });
 
-  it('defaults to a d20', () => {
+  it("defaults to a d20", () => {
     const instance = {};
 
     advantage.bind(instance)();
 
     expect(parseRollExpr).toHaveBeenCalledTimes(1);
-    expect(parseRollExpr)
-      .toHaveBeenCalledWith('d20', { effect: 'advantage' });
+    expect(parseRollExpr).toHaveBeenCalledWith("d20", { effect: "advantage" });
   });
 
-  it('returns this', () => {
+  it("returns this", () => {
     const instance = {};
-    expect(advantage.bind(instance)('')).toBe(instance);
+    expect(advantage.bind(instance)("")).toBe(instance);
   });
 });

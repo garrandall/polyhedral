@@ -1,16 +1,16 @@
-const minus = require('../lib/minus');
-const plus = require('../lib/plus');
+const minus = require("../lib/minus");
+const plus = require("../lib/plus");
 
-jest.mock('../lib/plus', () => jest.fn());
+jest.mock("../lib/plus", () => jest.fn());
 
-describe('minus', () => {
+describe("minus", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it('calls plus with negative factor', () => {
+  it("calls plus with negative factor", () => {
     const instance = {};
-    const rollExpr = 'test';
+    const rollExpr = "test";
 
     minus.bind(instance)(rollExpr);
 
@@ -18,9 +18,9 @@ describe('minus', () => {
     expect(plus).toHaveBeenCalledWith(rollExpr, -1);
   });
 
-  it('returns this', () => {
+  it("returns this", () => {
     const instance = {};
     plus.mockReturnValue(instance);
-    expect(minus.bind(instance)('')).toBe(instance);
+    expect(minus.bind(instance)("")).toBe(instance);
   });
 });

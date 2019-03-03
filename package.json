@@ -2,10 +2,16 @@
   "name": "polyhedral",
   "version": "1.0.0",
   "description": "A package for rolling and analyzing dice for tabletop games.",
+  "keywords": [],
   "main": "lib/index.js",
+  "files": [
+    "lib/*"
+  ],
   "scripts": {
     "test": "jest",
-    "lint": "eslint --fix --ignore-path .gitignore ."
+    "lint": "eslint --fix --ignore-path .gitignore .",
+    "check": "prettier --check \"lib/*.js\" \"lib/*/*.js\" \"test/*.js\" \"test/*/*.js\"",
+    "prettier": "prettier --write \"lib/*.js\" \"lib/*/*.js\" \"test/*.js\" \"test/*/*.js\""
   },
   "repository": {
     "type": "git",
@@ -16,11 +22,11 @@
   "bugs": {
     "url": "https://github.com/gdrandal/polyhedral/issues"
   },
-  "homepage": "https://github.com/gdrandal/polyhedral#readme",
+  "homepage": "https://github.com/gdrandal/polyhedral",
   "devDependencies": {
-    "eslint": "^5.15.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "prettier": "^1.16.4"
   }
 }
