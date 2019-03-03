@@ -8,7 +8,7 @@ describe("minus", () => {
     jest.clearAllMocks();
   });
 
-  it("calls plus with negative factor", () => {
+  it("calls plus with negative sign", () => {
     const instance = {};
     const rollExpr = "test";
 

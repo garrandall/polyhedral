@@ -12,39 +12,39 @@ describe("evalRoll", () => {
     expect(evalRoll([])).toEqual(0);
   });
 
-  it("returns mod multiplied by factor", () => {
-    const steps = [{ mod: 6, factor: -1 }];
+  it("returns mod multiplied by sign", () => {
+    const steps = [{ mod: 6, sign: -1 }];
 
     expect(evalRoll(steps)).toEqual(-6);
   });
 
-  it("rolls die and multiplies by factor", () => {
-    const steps = [{ die: 4, factor: -1 }];
+  it("rolls die and multiplies by sign", () => {
+    const steps = [{ die: 4, sign: -1 }];
 
     expect(evalRoll(steps)).toEqual(-2);
   });
 
   it("uses rollDie to eval step with die field", () => {
-    const steps = [{ mod: 5, factor: -1 }, { die: 4, factor: 1 }];
+    const steps = [{ mod: 5, sign: -1 }, { die: 4, sign: 1 }];
 
     expect(evalRoll(steps)).toEqual(-3);
     expect(rollDie).toHaveBeenCalledTimes(1);
-    expect(rollDie).toHaveBeenCalledWith(4, undefined);
+    expect(rollDie).toHaveBeenCalledWith({ die: 4, sign: 1 });
   });
 
   it("passes advantage effect to rollDie", () => {
-    const steps = [{ die: 4, factor: 1, effect: "advantage" }];
+    const steps = [{ die: 4, sign: 1, highest: 1 }];
 
     expect(evalRoll(steps)).toEqual(2);
     expect(rollDie).toHaveBeenCalledTimes(1);
-    expect(rollDie).toHaveBeenCalledWith(4, "advantage");
+    expect(rollDie).toHaveBeenCalledWith({ die: 4, sign: 1, highest: 1 });
   });
 
   it("passes disadvantage effect to rollDie", () => {
-    const steps = [{ die: 4, factor: 1, effect: "disadvantage" }];
+    const steps = [{ die: 4, sign: 1, lowest: 1 }];
 
     expect(evalRoll(steps)).toEqual(2);
     expect(rollDie).toHaveBeenCalledTimes(1);
-    expect(rollDie).toHaveBeenCalledWith(4, "disadvantage");
+    expect(rollDie).toHaveBeenCalledWith({ die: 4, sign: 1, lowest: 1 });
   });
 });
