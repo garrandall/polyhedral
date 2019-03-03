@@ -1,0 +1,26 @@
+{
+  "name": "polyhedral",
+  "version": "1.0.0",
+  "description": "A package for rolling and analyzing dice for tabletop games.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint --fix --ignore-path .gitignore ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdrandal/polyhedral.git"
+  },
+  "author": "Garrett Randall",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gdrandal/polyhedral/issues"
+  },
+  "homepage": "https://github.com/gdrandal/polyhedral#readme",
+  "devDependencies": {
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.1.0"
+  }
+}
