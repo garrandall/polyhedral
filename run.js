@@ -1,7 +1,4 @@
 const Polyhedral = require('./lib');
 
-const dice = Polyhedral('2 d20h').plus('2d6').minus('1');
-
-console.log(dice.sample(3));
-
-console.log(Polyhedral().roll());
+console.log(Polyhedral('2d20h + 4 + 3 - d4 + d10').roll());
+console.log(Polyhedral('2d20h').plus('4').plus('3').minus('d4').plus('d10').sample());
