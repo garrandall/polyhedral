@@ -4,26 +4,23 @@
 
 A package to roll user-given dice sets and apply modifiers. Built with 5th edition Dungeons and Dragons in mind, this package can accept a string that represents a dice roll and carry out the roll. It can also perform some simple analysis on the distribution of the dice set.
 
-## Structure
+## Installation
 
-This package's strengths lie in its ability to interpret die roll expressions commonly found in tabletop games. An expression is composed of 1 or more "steps" joined by a "+" or "-". A step can either be a die step or mod(ifier) step.
+Polyhedral can be installed with NPM.
 
-### Mod Steps
+```
+npm install polyhedral
+```
 
-These are simply natural numbers. `7`, `0`, `-3`, and `+22` are examples of mod steps.
+Simply import to use.
 
-### Die Steps
-
-These are more complex. A die step requires "dX" to be present, where X is the number of faces on the die. This can be preceded by a coefficient, indicating the number of dice to be rolled. This can be followed by "hY" or "lY" indicating that Polyhedral should keep the Y highest ("h") or lowest ("l") results. Omitting a Y value defaults it to 1.
-
-* `2d20h` ("roll 2d20 and keep the highest") corresponds to 5th-edition Dungeons and Dragons's [advantage](https://5thsrd.org/rules/advantage_and_disadvantage/) mechanic.
-* `2d20l` ("roll 2d20 and keep the lowest") similarly corresponds to disadvantage from that system.
-* `2d20` simply sums the results of 2 twenty-sided die rolls.
-* `4d6h3` ("roll 4d6 and keep the highest 3") corresponds to classic Dungeons and Dragons's [ability score generation](https://www.5esrd.com/using-ability-scores/#Unofficial_Generating_Ability_Scores).
+```js
+const Polyhedral = require('polyhedral');
+```
 
 ## Documentation
 
-The package contains several functions for rolling and analyzing rolls, and recognizing rolls in strings. The API functions as a chain that builds on previously added rolls.
+The package has functionality for rolling and analyzing rolls, and recognizing rolls in strings. The API functions as a chain that builds on previously added rolls. The entrypoint is a function, `Polyhedral` that exposes other functions to build complex dice rolls.
 
 ### `Polyhedral`
 
@@ -104,6 +101,21 @@ Converts the accumulated roll steps into a roll expression.
 ### `Polyhedral.match` (not implemented) -->
 
 ## Using Polyhedral
+
+This package's strength lies in its ability to interpret die roll expressions commonly found in tabletop games. An expression is composed of 1 or more "steps" joined by a "+" or "-". A step can either be a die step or mod(ifier) step.
+
+### Mod Steps
+
+These are simply natural numbers. `7`, `0`, `-3`, and `+22` are examples of mod steps.
+
+### Die Steps
+
+These are more complex. A die step requires "dX" to be present, where X is the number of faces on the die. This can be preceded by a coefficient, indicating the number of dice to be rolled. This can be followed by "hY" or "lY" indicating that Polyhedral should keep the Y highest ("h") or lowest ("l") results. Omitting a Y value defaults it to 1.
+
+* `2d20h` ("roll 2d20 and keep the highest") corresponds to 5th-edition Dungeons and Dragons's [advantage](https://5thsrd.org/rules/advantage_and_disadvantage/) mechanic.
+* `2d20l` ("roll 2d20 and keep the lowest") similarly corresponds to disadvantage from that system.
+* `2d20` simply sums the results of 2 twenty-sided die rolls.
+* `4d6h3` ("roll 4d6 and keep the highest 3") corresponds to classic Dungeons and Dragons's [ability score generation](https://www.5esrd.com/using-ability-scores/#Unofficial_Generating_Ability_Scores).
 
 ### Quickly Repeating Rolls
 
