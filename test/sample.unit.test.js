@@ -14,9 +14,9 @@ describe("sample", () => {
     const instance = {
       rollSteps
     };
-    const expected = ["test", "test", "test", "test", "test"];
+    const expected = [3, 3, 3, 3, 3];
 
-    evalRoll.mockImplementation(() => "test");
+    evalRoll.mockImplementation(() => [1, 2]);
 
     expect(sample.bind(instance)(count)).toEqual(expected);
     expect(evalRoll).toHaveBeenCalledTimes(count);
@@ -29,8 +29,8 @@ describe("sample", () => {
       rollSteps
     };
 
-    const expected = Array(50).fill("test");
-    evalRoll.mockImplementation(() => "test");
+    const expected = Array(50).fill(1);
+    evalRoll.mockImplementation(() => [1]);
 
     expect(sample.bind(instance)()).toEqual(expected);
     expect(evalRoll).toHaveBeenCalledTimes(50);

@@ -14,9 +14,9 @@ describe("roll", () => {
       rollSteps
     };
 
-    evalRoll.mockImplementation(() => "test");
+    evalRoll.mockImplementation(() => [1, 1]);
 
-    expect(roll.bind(instance)()).toEqual("test");
+    expect(roll.bind(instance)()).toEqual(2);
     expect(evalRoll).toHaveBeenCalledTimes(1);
     expect(evalRoll).toHaveBeenCalledWith(rollSteps);
   });

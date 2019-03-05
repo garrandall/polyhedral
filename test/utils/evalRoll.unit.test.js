@@ -8,26 +8,26 @@ describe("evalRoll", () => {
     jest.clearAllMocks();
   });
 
-  it("returns 0 when given no steps", () => {
-    expect(evalRoll([])).toEqual(0);
+  it("returns [] when given no steps", () => {
+    expect(evalRoll([])).toEqual([]);
   });
 
   it("returns mod multiplied by sign", () => {
     const steps = [{ mod: 6, sign: -1 }];
 
-    expect(evalRoll(steps)).toEqual(-6);
+    expect(evalRoll(steps)).toEqual([-6]);
   });
 
   it("rolls die and multiplies by sign", () => {
     const steps = [{ die: 4, sign: -1 }];
 
-    expect(evalRoll(steps)).toEqual(-2);
+    expect(evalRoll(steps)).toEqual([-2]);
   });
 
   it("uses rollDie to eval step with die field", () => {
     const steps = [{ mod: 5, sign: -1 }, { die: 4, sign: 1 }];
 
-    expect(evalRoll(steps)).toEqual(-3);
+    expect(evalRoll(steps)).toEqual([-5, 2]);
     expect(rollDie).toHaveBeenCalledTimes(1);
     expect(rollDie).toHaveBeenCalledWith({ die: 4, sign: 1 });
   });
@@ -35,7 +35,7 @@ describe("evalRoll", () => {
   it("passes advantage effect to rollDie", () => {
     const steps = [{ die: 4, sign: 1, highest: 1 }];
 
-    expect(evalRoll(steps)).toEqual(2);
+    expect(evalRoll(steps)).toEqual([2]);
     expect(rollDie).toHaveBeenCalledTimes(1);
     expect(rollDie).toHaveBeenCalledWith({ die: 4, sign: 1, highest: 1 });
   });
@@ -43,7 +43,7 @@ describe("evalRoll", () => {
   it("passes disadvantage effect to rollDie", () => {
     const steps = [{ die: 4, sign: 1, lowest: 1 }];
 
-    expect(evalRoll(steps)).toEqual(2);
+    expect(evalRoll(steps)).toEqual([2]);
     expect(rollDie).toHaveBeenCalledTimes(1);
     expect(rollDie).toHaveBeenCalledWith({ die: 4, sign: 1, lowest: 1 });
   });

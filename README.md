@@ -40,11 +40,11 @@ The initializer function, the can be called without arguments, or with a roll ex
 Parse the given roll expression and add it to the accumulated rolls and modifiers. When evaluated, this expression will be added to the result.
 
 ```js
-> const plusFive = Polyhedral('+5');
-> plusFive.roll();
+> const five = Polyhedral('+5');
+> five.roll();
 5
-> const plusFivePlusD6 = plusFive.plus('d6');
-> plusFivePlusD6.roll();
+> const fivePlusD6 = five.plus('d6');
+> fivePlusD6.roll();
 8
 ```
 
@@ -53,11 +53,11 @@ Parse the given roll expression and add it to the accumulated rolls and modifier
 Parse the given roll expression and add it to the accumulated rolls and modifiers. When evaluated, this expression will be subtracted from the result.
 
 ```js
-> const plusFive = Polyhedral('+10');
-> plusFive.roll();
+> const ten = Polyhedral('+10');
+> ten.roll();
 10
-> const plusFiveMinusD6 = plusFive.minus('d6');
-> plusFiveMinusD6.roll();
+> const tenMinusD6 = ten.minus('d6');
+> tenMinusD6.roll();
 6
 ```
 
@@ -66,7 +66,7 @@ Parse the given roll expression and add it to the accumulated rolls and modifier
 Evaluates the accumulated rolls and modifiers, returning the integer sum of the results.
 
 ```js
-> const dice = Polyhedral('2 d20h').plus('2d6').minus('1');
+> const dice = Polyhedral('2d20h').plus('2d6').minus('1');
 > dice.roll();
 29
 > dice.roll();
@@ -75,12 +75,22 @@ Evaluates the accumulated rolls and modifiers, returning the integer sum of the 
 17
 ```
 
+### `Polyhedral.rollEach`
+
+Evaluates the accumulated rolls and modifiers, returning an array of results.
+
+```js
+> const dice = Polyhedral('2d20h').plus('2d6').minus('1');
+> dice.rollEach();
+[12, 4, -1]
+```
+
 ### `Polyhedral.sample`
 
 Evaluates the accumulated rolls and modifiers a number of times equal to the argument given, 50 by default.
 
 ```js
-> const dice = Polyhedral('2 d20h').plus('2d6').minus('1');
+> const dice = Polyhedral('2d20h').plus('2d6').minus('1');
 > dice.sample(3);
 [ 17, 22, 20 ]
 ```
@@ -117,6 +127,12 @@ These are more complex. A die step requires "dX" to be present, where X is the n
 * `2d20` simply sums the results of 2 twenty-sided die rolls.
 * `4d6h3` ("roll 4d6 and keep the highest 3") corresponds to classic Dungeons and Dragons's [ability score generation](https://www.5esrd.com/using-ability-scores/#Unofficial_Generating_Ability_Scores).
 
+The package is flexible enough to parse many expressions.
+
+* Whitespace - `4 d6 + 7`
+* Leading signs - `+4d6`
+* Purely modifiers - `+5`
+
 ### Quickly Repeating Rolls
 
 A classic method of generating ability scores in most editions of Dungeons and Dragons is to roll 4d6 and sum the 3 highest results 6 times. These rolls make up a character's core 6 ability scores. Polyhedral can do this quickly.
@@ -130,7 +146,7 @@ A classic method of generating ability scores in most editions of Dungeons and D
 
 In 5th edition Dungeons and Dragons, an attack roll is made by rolling a d20 and adding the appropriate ability modifier and proficiency bonus. If you are under the effect of the *bane* spell, you must subtract a d4 from this roll. If you are inspired by a bard, you can add their bardic inspiration die to the roll. Finally, if you have advantage, your d20 roll becomes rolling twice and taking the higher roll.
 
-Say a character has advantage on the attack roll, has a proficiency bonus of +4, an ability score modifier of +3, is effected by *bane*, and is inspired by abard that uses a d10 as their inspiration die. This roll can be carried out by Polyhedral in the ways shown below:
+Say a character has advantage on the attack roll, has a proficiency bonus of +4, an ability score modifier of +3, is effected by *bane*, and is inspired by abard that uses a d10 as their inspiration die. This roll can be carried out by Polyhedral in many ways:
 
 ```js
 > Polyhedral('2d20h + 4 + 3 - d4 + d10').roll();
