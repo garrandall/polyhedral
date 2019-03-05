@@ -82,7 +82,7 @@ Evaluates the accumulated rolls and modifiers, returning an array of results.
 ```js
 > const dice = Polyhedral('2d20h').plus('2d6').minus('1');
 > dice.rollEach();
-[12, 4, -1]
+[ 12, 4, -1 ]
 ```
 
 ### `Polyhedral.sample`
@@ -101,7 +101,9 @@ Converts the accumulated roll steps into a roll expression.
 
 ```js
 > Polyhedral('2 d20h').plus('2d6').minus('1').stringify();
-'+2d20h+2d6-1'
+'2d20h1 + 2d6 - 1'
+> Polyhedral('-2 d20h').plus('2d6').minus('1').stringify();
+'- 2d20h1 + 2d6 - 1'
 ```
 
 <!-- ### `Polyhedral.analyze` (not implemented)
