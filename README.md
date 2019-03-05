@@ -24,7 +24,7 @@ The package has functionality for rolling and analyzing rolls, and recognizing r
 
 ### `Polyhedral`
 
-The initializer function, the can be called without arguments, or with a roll expression.
+The initializer function, that can be called without arguments, or with a roll expression.
 
 ```js
 > Polyhedral().roll();
@@ -148,7 +148,7 @@ A classic method of generating ability scores in most editions of Dungeons and D
 
 In 5th edition Dungeons and Dragons, an attack roll is made by rolling a d20 and adding the appropriate ability modifier and proficiency bonus. If you are under the effect of the *bane* spell, you must subtract a d4 from this roll. If you are inspired by a bard, you can add their bardic inspiration die to the roll. Finally, if you have advantage, your d20 roll becomes rolling twice and taking the higher roll.
 
-Say a character has advantage on the attack roll, has a proficiency bonus of +4, an ability score modifier of +3, is effected by *bane*, and is inspired by abard that uses a d10 as their inspiration die. This roll can be carried out by Polyhedral in many ways:
+Say a character has advantage on the attack roll, has a proficiency bonus of +4, an ability score modifier of +3, is effected by *bane*, and is inspired by a bard that uses a d10 as their inspiration die. This roll can be carried out by Polyhedral in many ways:
 
 ```js
 > Polyhedral('2d20h + 4 + 3 - d4 + d10').roll();
