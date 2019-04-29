@@ -3,6 +3,10 @@ install:
   - npm install -g codecov
 script:
   - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
-  - codecov
+  - npm run test
+env:
+  - CODECOV_TOKEN=e0b8ecb8-bc8a-4795-96c0-ca9340f4d385
 node_js:
   - "node"
+after_success:
+  - npm run codecov
