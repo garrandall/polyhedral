@@ -8,7 +8,7 @@
     "lib/*"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint --fix --ignore-path .gitignore .",
     "check": "prettier --check \"lib/*.js\" \"lib/*/*.js\" \"test/*.js\" \"test/*/*.js\"",
     "prettier": "prettier --write \"lib/*.js\" \"lib/*/*.js\" \"test/*.js\" \"test/*/*.js\"",
