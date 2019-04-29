@@ -1,6 +1,6 @@
 # Polyhedral 🎲
 
-[![build](https://travis-ci.com/gdrandal/polyhedral.svg?token=iu3UiHNeHRbXXPoR6cax&branch=master)](https://travis-ci.com/gdrandal/polyhedral) [![codecov](https://codecov.io/gh/gdrandal/polyhedral/branch/master/graph/badge.svg?token=6rTue9RTzF)](https://codecov.io/gh/gdrandal/polyhedral) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![npm](https://img.shields.io/npm/v/polyhedral.svg) [![build](https://travis-ci.com/gdrandal/polyhedral.svg?token=iu3UiHNeHRbXXPoR6cax&branch=master)](https://travis-ci.com/gdrandal/polyhedral) [![codecov](https://codecov.io/gh/gdrandal/polyhedral/branch/master/graph/badge.svg?token=6rTue9RTzF)](https://codecov.io/gh/gdrandal/polyhedral) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 A package to roll user-given dice sets and apply modifiers. Built with 5th edition Dungeons and Dragons in mind, this package can accept a string that represents a dice roll and carry out the roll. It can also perform some simple analysis on the distribution of the dice set.
 
