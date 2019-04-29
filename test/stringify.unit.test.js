@@ -5,18 +5,27 @@ describe("stringify", () => {
     jest.clearAllMocks();
   });
 
-  it.each([
-    ["5", [{ mod: 5, sign: 1 }]],
-    ["- 2d6", [{ die: 6, sign: -1, count: 2 }]],
-    [
-      "1 + 4d6h2",
-      [{ mod: 1, sign: 1 }, { die: 6, count: 4, sign: 1, highest: 2 }]
-    ]
-  ])("stringifies %s correctly", (expected, rollSteps) => {
+  it("calls stringify on each RollStep and joins them", () => {
+    const rollSteps = [
+      { stringify: jest.fn(() => "- d4") },
+      { stringify: jest.fn(() => "+ 5") }
+    ];
     const instance = {
       rollSteps
     };
 
-    expect(stringify.bind(instance)()).toEqual(expected);
+    expect(stringify.bind(instance)()).toEqual("- d4 + 5");
+    expect(rollSteps[0].stringify).toHaveBeenCalledTimes(1);
+    expect(rollSteps[1].stringify).toHaveBeenCalledTimes(1);
+  });
+
+  it("trims leading +", () => {
+    const rollSteps = [{ stringify: jest.fn(() => "+ d4") }];
+    const instance = {
+      rollSteps
+    };
+
+    expect(stringify.bind(instance)()).toEqual("d4");
+    expect(rollSteps[0].stringify).toHaveBeenCalledTimes(1);
   });
 });

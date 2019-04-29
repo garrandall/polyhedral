@@ -1,23 +1,17 @@
 const roll = require("../lib/roll");
-const evalRoll = require("../lib/utils/evalRoll");
-
-jest.mock("../lib/utils/evalRoll", () => jest.fn());
 
 describe("roll", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("calls evalRoll with this.rollSteps and returns it", () => {
-    const rollSteps = [];
+  it("calls rollEach and sums result", () => {
+    const rollEach = jest.fn(() => [1, 2]);
     const instance = {
-      rollSteps
+      rollEach
     };
 
-    evalRoll.mockImplementation(() => [1, 1]);
-
-    expect(roll.bind(instance)()).toEqual(2);
-    expect(evalRoll).toHaveBeenCalledTimes(1);
-    expect(evalRoll).toHaveBeenCalledWith(rollSteps);
+    expect(roll.bind(instance)()).toBe(3);
+    expect(rollEach).toHaveBeenCalledTimes(1);
   });
 });
