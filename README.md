@@ -1,6 +1,6 @@
 # Polyhedral 🎲
 
-![npm](https://img.shields.io/npm/v/polyhedral.svg) [![build](https://travis-ci.com/gdrandal/polyhedral.svg?token=iu3UiHNeHRbXXPoR6cax&branch=master)](https://travis-ci.com/gdrandal/polyhedral) [![codecov](https://codecov.io/gh/gdrandal/polyhedral/branch/master/graph/badge.svg?token=6rTue9RTzF)](https://codecov.io/gh/gdrandal/polyhedral) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![npm](https://img.shields.io/npm/v/polyhedral.svg) [![build](https://travis-ci.com/gdrandal/polyhedral.svg?token=iu3UiHNeHRbXXPoR6cax&branch=master)](https://travis-ci.com/gdrandal/polyhedral) [![codecov](https://codecov.io/gh/gdrandal/polyhedral/branch/master/graph/badge.svg?token=6rTue9RTzF)](https://codecov.io/gh/gdrandal/polyhedral) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/polyhedral.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 A package to roll user-given dice sets and apply modifiers. Built with 5th edition Dungeons and Dragons in mind, this package can accept a string that represents a dice roll and carry out the roll. It can also perform some simple analysis on the distribution of the dice set.
 
@@ -35,7 +35,7 @@ The initializer function, that can be called without arguments, or with a roll e
 5
 ```
 
-### `Polyhedral.plus`
+### `Polyhedral().plus`
 
 Parse the given roll expression and add it to the accumulated rolls and modifiers. When evaluated, this expression will be added to the result.
 
@@ -48,7 +48,7 @@ Parse the given roll expression and add it to the accumulated rolls and modifier
 8
 ```
 
-### `Polyhedral.minus`
+### `Polyhedral().minus`
 
 Parse the given roll expression and add it to the accumulated rolls and modifiers. When evaluated, this expression will be subtracted from the result.
 
@@ -61,7 +61,7 @@ Parse the given roll expression and add it to the accumulated rolls and modifier
 6
 ```
 
-### `Polyhedral.roll`
+### `Polyhedral().roll`
 
 Evaluates the accumulated rolls and modifiers, returning the integer sum of the results.
 
@@ -75,7 +75,7 @@ Evaluates the accumulated rolls and modifiers, returning the integer sum of the 
 17
 ```
 
-### `Polyhedral.rollEach`
+### `Polyhedral().rollEach`
 
 Evaluates the accumulated rolls and modifiers, returning an array of results.
 
@@ -85,7 +85,7 @@ Evaluates the accumulated rolls and modifiers, returning an array of results.
 [ 12, 4, -1 ]
 ```
 
-### `Polyhedral.sample`
+### `Polyhedral().sample`
 
 Evaluates the accumulated rolls and modifiers a number of times equal to the argument given, 50 by default.
 
@@ -95,7 +95,7 @@ Evaluates the accumulated rolls and modifiers a number of times equal to the arg
 [ 17, 22, 20 ]
 ```
 
-### `Polyhedral.stringify`
+### `Polyhedral().stringify`
 
 Converts the accumulated roll steps into a roll expression.
 
@@ -106,7 +106,7 @@ Converts the accumulated roll steps into a roll expression.
 '- 2d20h1 + 2d6 - 1'
 ```
 
-### `Polyhedral.min`
+### `Polyhedral().min`
 
 Gets the minimum possible value for the accumulated rolls.
 
@@ -115,7 +115,7 @@ Gets the minimum possible value for the accumulated rolls.
 3
 ```
 
-### `Polyhedral.max`
+### `Polyhedral().max`
 
 Gets the maximum possible value for the accumulated rolls.
 
@@ -176,7 +176,7 @@ Say a character has advantage on the attack roll, has a proficiency bonus of +4,
 28
 ```
 
-Further, this can be sampled (or analyzed when I implement it) to get a better idea of the likely outcomes of this roll.
+Further, this can be sampled to get a better idea of the likely outcomes of this roll.
 
 ```js
 > const results = attack.sample(50);
@@ -195,3 +195,7 @@ We can easily find the observed average of this sample set.
 > results.reduce((total, a) => total + a, 0) / 50;
 22.4
 ```
+
+## Planned Features
+
+* **Analyze rolls.** While the minimum and maximum are exposed, having more complete statistics for rolls would be insightful. An end goal of these package is to be able to easily compare the distributions of different rolls. It would help to include the distribution, expected value, and standard deviation of rolls.
