@@ -106,9 +106,25 @@ Converts the accumulated roll steps into a roll expression.
 '- 2d20h1 + 2d6 - 1'
 ```
 
-<!-- ### `Polyhedral.analyze` (not implemented)
+### `Polyhedral.min`
 
-### `Polyhedral.english` (not implemented)
+Gets the minimum possible value for the accumulated rolls.
+
+```js
+> Polyhedral('4d6').minus('1').min();
+3
+```
+
+### `Polyhedral.max`
+
+Gets the maximum possible value for the accumulated rolls.
+
+```js
+> Polyhedral('4d6').minus('1').max();
+23
+```
+
+<!--### `Polyhedral.english` (not implemented)
 
 ### `Polyhedral.match` (not implemented) -->
 

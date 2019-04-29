@@ -5,7 +5,7 @@ describe("rollEach", () => {
     jest.clearAllMocks();
   });
 
-  it("calls eval on each RollStep=", () => {
+  it("calls eval on each RollStep", () => {
     const rollSteps = [{ eval: jest.fn(() => 5) }, { eval: jest.fn(() => 7) }];
     const instance = {
       rollSteps
